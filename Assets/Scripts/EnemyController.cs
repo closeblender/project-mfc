@@ -6,6 +6,7 @@ public abstract class EnemyController : HealthController
 
 	public GameObject launchPad;
 	public EnemySpawnerController.EnemyType enemyType;
+	public int reward;
 
 	// Use this for initialization
 	public virtual void Start ()
@@ -38,7 +39,8 @@ public abstract class EnemyController : HealthController
 	public abstract void attack (); // Attack
 
 	public override void die() {
-		EnemySpawnerController.instance.onEnemyDeath (enemyType);
+		EnemySpawnerController.instance.onEnemyDeath (enemyType, reward);
+		EnemySpawnerController.instance.spawnPowerUp (transform.position);
 	}
 
 }

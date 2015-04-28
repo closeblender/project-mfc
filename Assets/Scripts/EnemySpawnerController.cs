@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class EnemySpawnerController : MonoBehaviour
@@ -11,11 +12,28 @@ public class EnemySpawnerController : MonoBehaviour
 	public Transform[] spawnPoints;
 	public int round = 0;
 
+	public Text tvRound;
+	public Text tvCash;
+
+	public int cash;
+	public int roundStartCash;
+
+	public MenuController menuController;
+
+	public float powerUpChance = .1f;
+	public Transform[] powerUpPrefab;
+
 	// Use this for initialization
 	void Start ()
 	{
 		instance = this;
 		StartCoroutine (spawnEnemies ());
+	}
+
+	void Update() 
+	{
+		tvRound.text = "Round: " + (round + 1);
+		tvCash.text = "Cash: " + cash;
 	}
 
 	IEnumerator spawnEnemies()
@@ -27,6 +45,12 @@ public class EnemySpawnerController : MonoBehaviour
 				while(!rounds[round].allEnemiesDied()) {
 					yield return null;
 				}
+				// show menu
+				menuController.showEndRound(roundStartCash, cash, round);
+				while(!menuController.startNextRound) {
+					yield return null;
+				}
+				roundStartCash = cash;
 				round ++;
 			} else {
 				// Spawn an Enemy
@@ -43,8 +67,15 @@ public class EnemySpawnerController : MonoBehaviour
 
 	}
 
-	public void onEnemyDeath(EnemySpawnerController.EnemyType enemyType) {
+	public void onEnemyDeath(EnemySpawnerController.EnemyType enemyType, int reward) {
 		rounds [round].onEnemyDeath (enemyType);
+		cash += reward;
+	}
+
+	public void spawnPowerUp(Vector3 pos) {
+		if (Random.value < powerUpChance) {
+			Instantiate(powerUpPrefab[Random.Range(0,powerUpPrefab.Length)],pos,Quaternion.identity);
+		}
 	}
 
 }

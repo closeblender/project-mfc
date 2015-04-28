@@ -9,7 +9,18 @@ public class Weapon {
 	public enum FireType {Semi, Auto};
 	public FireType fireType;
 	public float fireRate;
-	public bool collateral;
+	public enum DamageType {Normal, Collateral, Splash};
+	public DamageType damageType;
+	public float splashRadius;
+	public int ammo;
+	public int clipAmmo;
+	public int clipSize;
+	public Sprite muzzleFlash;
+	public float reloadTime;
+	public bool own;
+	public int buyPrice;
+	public int buyAmmoPrice;
+	public int buyAmmoAmount;
 
 
 }
