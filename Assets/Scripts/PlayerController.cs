@@ -120,6 +120,26 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	public void ammoGained(){
+		switch (weaponIndex) {
+		case 0: 
+			weapons[weaponIndex].ammo += 100;
+			break;
+		case 1:
+			weapons[weaponIndex].ammo += 50;
+			break;
+        case 2:
+			weapons[weaponIndex].ammo += 20;
+			break;
+		case 3:
+			weapons[weaponIndex].ammo += 5;
+			break;
+		case 5:
+			weapons[weaponIndex].ammo += 10;
+			break;
+		}
+	}
+
 	IEnumerator reloadGun(int gun) {
 		reloading = true;
 		yield return new WaitForSeconds(weapons[gun].reloadTime);

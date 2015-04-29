@@ -73,9 +73,10 @@ public class EnemySpawnerController : MonoBehaviour
 	}
 
 	public void spawnPowerUp(Vector3 pos) {
-		if (Random.value < powerUpChance) {
+		Instantiate(powerUpPrefab[2],pos,Quaternion.identity);
+		/*if (Random.value < powerUpChance) {
 			Instantiate(powerUpPrefab[Random.Range(0,powerUpPrefab.Length)],pos,Quaternion.identity);
-		}
+		}*/
 	}
 
 }
