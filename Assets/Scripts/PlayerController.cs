@@ -138,6 +138,10 @@ public class PlayerController : MonoBehaviour {
 			weapons[weaponIndex].ammo += 10;
 			break;
 		}
+
+		if (weapons [weaponIndex].ammo > weapons [weaponIndex].maxAmmo) {
+			weapons[weaponIndex].ammo = weapons[weaponIndex].maxAmmo;
+		}
 	}
 
 	IEnumerator reloadGun(int gun) {

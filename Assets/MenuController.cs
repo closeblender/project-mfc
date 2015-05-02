@@ -89,11 +89,13 @@ public class MenuController : MonoBehaviour {
 	public void onGunButton(int index) {
 		if(pController.weapons[index].own) {
 			// Try to buy ammo
-			if(eController.cash >= pController.weapons[index].buyAmmoPrice) {
-				eController.cash -= pController.weapons[index].buyAmmoPrice;
-				pController.weapons[index].ammo += pController.weapons[index].buyAmmoAmount;
-			} else {
-				Debug.Log ("Not Enough Cash");
+			if(pController.weapons[index].ammo < pController.weapons[index].maxAmmo){
+				if(eController.cash >= pController.weapons[index].buyAmmoPrice) {
+					eController.cash -= pController.weapons[index].buyAmmoPrice;
+					pController.weapons[index].ammo += pController.weapons[index].buyAmmoAmount;
+				} else {
+					Debug.Log ("Not Enough Cash");
+				}
 			}
 		} else {
 			// Try to buy gun
@@ -103,6 +105,9 @@ public class MenuController : MonoBehaviour {
 			} else {
 				Debug.Log ("Not Enough Cash");
 			}
+		}
+		if (pController.weapons [index].ammo > pController.weapons [index].maxAmmo) {
+			pController.weapons[index].ammo = pController.weapons[index].maxAmmo;
 		}
 		openStore ();
 	}

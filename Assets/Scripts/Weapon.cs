@@ -13,6 +13,7 @@ public class Weapon {
 	public DamageType damageType;
 	public float splashRadius;
 	public int ammo;
+	public int maxAmmo;
 	public int clipAmmo;
 	public int clipSize;
 	public Sprite muzzleFlash;
