@@ -30,7 +30,7 @@ public class takeOff : MonoBehaviour {
 			increaseAmount = 0;
 		}
 
-		if (rigidbody2D.position.y > 15) {
+		if (rigidbody2D.position.y > 30) {
 			Instantiate(newRocket,new Vector3(-1.96f,3.79f,2),Quaternion.identity);
 			Destroy(gameObject);
 		}
