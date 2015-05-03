@@ -3526,7 +3526,7 @@ Transform:
   m_Children:
   - {fileID: 959579776}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!50 &1086002354
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -4334,7 +4334,7 @@ Transform:
   m_LocalScale: {x: 3.32500005, y: 1.39999998, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!1 &1493897903
 GameObject:
   m_ObjectHideFlags: 0
