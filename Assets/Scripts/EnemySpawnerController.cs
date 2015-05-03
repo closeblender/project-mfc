@@ -59,7 +59,11 @@ public class EnemySpawnerController : MonoBehaviour
 				Transform prefab = enemyPrefabs[(int)rounds[round].getSpawnEnemyType()];
 				// Pick random vertical position
 				spawnPoint.y = Random.Range(spawnPoint.y/2,spawnPoint.y);
-				Instantiate(prefab, spawnPoint,Quaternion.identity);
+				if(spawnPoint.x > 0){
+					Instantiate(prefab, spawnPoint,new Quaternion(0,180,0,0));
+				}else{
+					Instantiate(prefab, spawnPoint,Quaternion.identity);
+				}
 			}
 
 			yield return null;
