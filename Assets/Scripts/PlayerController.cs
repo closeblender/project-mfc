@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour {
 	public float muzzleFlashLength;
 	public float powerUpMultipler;
 	public float powerUpMultiplerTill;
+	public Transform soundPrefab;
+	public Image damageIndicator;
 
 	void Start() {
 		muzzleFlash.enabled = false;
@@ -23,6 +25,8 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 		weaponText.text = "Weapon: " + weapons [weaponIndex].name + "; Ammo: " + weapons[weaponIndex].clipAmmo + "/" + weapons[weaponIndex].ammo;
 		tvReloading.text = reloading ? "Reloading" : "";
+
+		damageIndicator.enabled = Time.time < powerUpMultiplerTill && powerUpMultipler > 1;
 
 		if (Input.GetMouseButtonDown (0)) {
 			fire ();
@@ -70,6 +74,8 @@ public class PlayerController : MonoBehaviour {
 		if (weapons [weaponIndex].clipAmmo > 0 && !mController.open) {
 			lastFire = Time.time;
 
+
+
 			float doDamage = weapons [weaponIndex].damage * (powerUpMultiplerTill > Time.time ? powerUpMultipler : 1);
 
 			weapons [weaponIndex].clipAmmo --;
@@ -109,6 +115,12 @@ public class PlayerController : MonoBehaviour {
 			
 			StopCoroutine("performMuzzleFlash");
 			StartCoroutine("performMuzzleFlash",weaponIndex);
+
+			// Bang!
+			Transform bang = Instantiate(soundPrefab, Camera.main.transform.position, Quaternion.identity) as Transform;
+			bang.GetComponent<AudioSource>().clip = weapons[weaponIndex].audio;
+			bang.GetComponent<AudioSource>().Play();
+
 		} else {
 			tryToReload();
 		}

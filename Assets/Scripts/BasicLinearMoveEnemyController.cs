@@ -20,6 +20,7 @@ public class BasicLinearMoveEnemyController : EnemyController
 	public override void move ()
 	{
 		GetComponent<Rigidbody2D> ().velocity = new Vector2 (getDirectionToLaunchPad () * speed, GetComponent<Rigidbody2D> ().velocity.y);
+	
 	}
 
 	public override bool inAttackRange ()

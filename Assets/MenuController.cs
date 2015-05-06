@@ -27,6 +27,10 @@ public class MenuController : MonoBehaviour {
 	public int maxLaunchpadHealth = 500;
 	public bool open = false;
 
+	
+	public GameObject youLosePanel;
+	public Text tvroundLost;
+
 	void Start() {
 		endOfRoundMenu.SetActive (false);
 		storeMenu.SetActive (false);
@@ -133,6 +137,17 @@ public class MenuController : MonoBehaviour {
 			Debug.Log ("Can not fortify");
 		}
 		openStore ();
+	}
+
+	public void onMainMenu() {
+		Application.LoadLevel (0);
+	}
+
+	public void onLose(int round) {
+		youLosePanel.SetActive(true);
+		tvroundLost.text = "You Lost On Round: " + round;
+		pController.powerUpMultipler = 0;
+		pController.powerUpMultiplerTill = Mathf.Infinity;
 	}
 
 }

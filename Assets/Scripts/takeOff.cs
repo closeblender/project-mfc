@@ -15,22 +15,22 @@ public class takeOff : MonoBehaviour {
 	void moveRocket(){
 		GameObject flame = GameObject.Find("flame");
 		if (flame) {
-			flame.particleSystem.Play();
+			flame.GetComponent<ParticleSystem>().Play();
 		}
 
-		rigidbody2D.velocity = new Vector2 (0,1);
+		GetComponent<Rigidbody2D>().velocity = new Vector2 (0,1);
 		increaseAmount = 1;
 	}
 
 	// Update is called once per frame
 	void Update () {
 		if (Time.time > lastSpeedIncrease + increaseSpeedTimer) {
-			rigidbody2D.velocity = new Vector2 (0,rigidbody2D.velocity.y + increaseAmount);
+			GetComponent<Rigidbody2D>().velocity = new Vector2 (0,GetComponent<Rigidbody2D>().velocity.y + increaseAmount);
 			lastSpeedIncrease = Time.time;
 			increaseAmount = 0;
 		}
 
-		if (rigidbody2D.position.y > 30) {
+		if (GetComponent<Rigidbody2D>().position.y > 30) {
 			Instantiate(newRocket,new Vector3(-1.96f,3.79f,2),Quaternion.identity);
 			Destroy(gameObject);
 		}

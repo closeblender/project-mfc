@@ -22,6 +22,7 @@ public class Weapon {
 	public int buyPrice;
 	public int buyAmmoPrice;
 	public int buyAmmoAmount;
+	public AudioClip audio;
 
 
 }
